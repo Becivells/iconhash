@@ -52,7 +52,7 @@ iconhash favicon.ico
 
 ### 带参数
 
-#### 1. Ico 文件的 hash 值
+#### 1. Icon 文件的 hash 值
 
 ```shell
 iconhash -file favicon.ico
@@ -100,7 +100,7 @@ iconhash -url https://www.baidu.com/favicon.ico
 
 
 
-#### 3. base64的 ico hash 值
+#### 3. base64的 icon hash 值
 
 格式如下所示
 
@@ -123,8 +123,6 @@ iconhash -b64 imgb64.txt
 ```
 
 对于这种类型的数据如果计算不准确可以去掉`data:image/vnd.microsoft.icon;base64,`只保留 base64 数据试试
-
-
 
 #### uint32数据
 
@@ -158,11 +156,77 @@ Usage of ./iconhash:
   -v    version
 ```
 
+### 调试模式
+
+主要应对 url 和 image b64的情况，如果hash值不一致请开启debug模式
+
+```
+iconhash -file https://106.55.12.93/favicon.ico1  -debug
+```
+
+**结果：**
+
+```
+------------------var            value-----------------------
+h                  :false
+v                  :false
+Version            :2020-05-24 23:09:10 +0800 v0.2
+VERSION_TAG        :v0.2
+Compile            :2020-05-24 23:24:31 +0800
+Branch             :master
+GitDirty           :0
+HashUrl            :https://106.55.12.93/favicon.ico1
+Hashfile           :
+ImageBase64        :
+UserAgent          :Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11
+IsUint32           :false
+FofaFormat        :true
+ShodanFormat       :false
+InsecureSkipVerify :true
+Debug              :true
+DefaultUA          :Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11
+------------------var            value-----------------------
+------------------start url content-----------------------
+====> url: https://106.55.12.93/favicon.ico1
+===> status code: 404
+====> content: 
+<html>
+<head><title>404 Not Found</title></head>
+<body>
+<center><h1>404 Not Found</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+
+------------------end url content-----------------------
+------------------start base64 content-----------------------
+====> base64:
+ PGh0bWw+DQo8aGVhZD48dGl0bGU+NDA0IE5vdCBGb3VuZDwvdGl0bGU+PC9oZWFkPg0KPGJvZHk+
+DQo8Y2VudGVyPjxoMT40MDQgTm90IEZvdW5kPC9oMT48L2NlbnRlcj4NCjxocj48Y2VudGVyPm5n
+aW54PC9jZW50ZXI+DQo8L2JvZHk+DQo8L2h0bWw+DQo8IS0tIGEgcGFkZGluZyB0byBkaXNhYmxl
+IE1TSUUgYW5kIENocm9tZSBmcmllbmRseSBlcnJvciBwYWdlIC0tPg0KPCEtLSBhIHBhZGRpbmcg
+dG8gZGlzYWJsZSBNU0lFIGFuZCBDaHJvbWUgZnJpZW5kbHkgZXJyb3IgcGFnZSAtLT4NCjwhLS0g
+YSBwYWRkaW5nIHRvIGRpc2FibGUgTVNJRSBhbmQgQ2hyb21lIGZyaWVuZGx5IGVycm9yIHBhZ2Ug
+LS0+DQo8IS0tIGEgcGFkZGluZyB0byBkaXNhYmxlIE1TSUUgYW5kIENocm9tZSBmcmllbmRseSBl
+cnJvciBwYWdlIC0tPg0KPCEtLSBhIHBhZGRpbmcgdG8gZGlzYWJsZSBNU0lFIGFuZCBDaHJvbWUg
+ZnJpZW5kbHkgZXJyb3IgcGFnZSAtLT4NCjwhLS0gYSBwYWRkaW5nIHRvIGRpc2FibGUgTVNJRSBh
+bmQgQ2hyb21lIGZyaWVuZGx5IGVycm9yIHBhZ2UgLS0+DQo=
+
+------------------end base64 content-----------------------
+icon_hash="566218143"
+```
+
 
 
 ## 编译 or 开发
 
-安装make环境
+安装make环境，golang 环境
 
 ```
 make release #编译版本
