@@ -161,7 +161,7 @@ Usage of ./iconhash:
 主要应对 url 和 image b64的情况，如果hash值不一致请开启debug模式
 
 ```
-iconhash -file https://106.55.12.93/favicon.ico1  -debug
+iconhash -url https://106.55.12.93/favicon.ico1  -debug
 ```
 
 **结果：**
