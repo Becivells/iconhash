@@ -12,7 +12,6 @@
 bin/
 release/
 iconhash
-*.ico
 test/tmp/
 doc/blueprint/
 *.iml
