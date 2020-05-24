@@ -126,7 +126,7 @@ iconhash -b64 imgb64.txt
 
 
 
-####uint32数据
+#### uint32数据
 
 默认使用的是int32数据如果想获得 uint32 的值可以加参数 -uint32
 
