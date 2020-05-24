@@ -158,3 +158,13 @@ Usage of ./iconhash:
   -v    version
 ```
 
+
+
+## 编译 or 开发
+
+安装make环境
+
+```
+make release #编译版本
+```
+
