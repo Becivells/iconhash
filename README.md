@@ -1,5 +1,6 @@
 # Fofa Shodan icon hash 计算器
 
+Dev: [![Dev Build Status](https://travis-ci.com/Becivells/iconhash.svg?branch=dev)](https://travis-ci.com/Becivells/iconhash) Master: [![Master Build Status](https://travis-ci.com/Becivells/iconhash.svg?branch=master)](https://travis-ci.com/Becivells/iconhash) [![HitCount](http://hits.dwyl.com/becivells/iconhash.svg)](http://hits.dwyl.com/becivells/iconhash)
 ## 说明
 
 大致说一下思路首先获得 favicon.ico 文件然后进行 base64 编码，编码后的数据要求每76个字符加上换行符。具体原因RFC 822文档上有说明。然后32位 mmh3 hash
