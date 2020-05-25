@@ -1,0 +1,27 @@
+Usage of bin/iconhash:
+  -b64 string
+    	mmh3 hash image base64 from file 
+    	 iconhash   -file test/favicon.ico 
+  -debug
+    	debug mode
+  -file string
+    	mmh3 hash from file 
+    	 iconhash -file favicon.ico
+  -fofa
+    	fofa search format (default true)
+  -h	look help 
+    	 iconhash  favicon.ico 
+    	 iconhash  https://www.baidu.com/favicon.ico
+  -shodan
+    	shodan search format 
+    	 iconhash   -file test/favicon.ico -shodan -fofa=false
+  -skip-verify
+    	https InsecureSkipVerify (default true)
+  -uint32
+    	uint32
+  -url string
+    	mmh3 hash from url 
+    	 iconhash -url  https://www.baidu.com/favicon.ico
+  -user-agent string
+    	mmh3 hash from url (default "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11")
+  -v	version

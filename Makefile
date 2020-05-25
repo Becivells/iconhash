@@ -89,3 +89,9 @@ release: build
 			done ; \
 		done ;\
 	done
+
+.PHONY: test-cli
+test-cli: build
+	@echo "$(CGREEN)Run all cli test cases ...$(CEND)"
+	bats ./test
+	@echo "test-cli Success!"
