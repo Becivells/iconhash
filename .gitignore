@@ -35,7 +35,6 @@ _tools/
 # vendor/
 
 ### Go Patch ###
-/vendor/
 /Godeps/
 
 ### Linux ###
