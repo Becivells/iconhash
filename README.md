@@ -1,6 +1,6 @@
 # Fofa Shodan icon hash 计算器
 
-[![Latest release](https://img.shields.io/github/v/release/becivells/iconhash)](https://github.com/becivells/iconhash/releases/latest)  [![dev build status](https://img.shields.io/travis/becivells/iconhash/dev.svg?label=travis dev build)](https://travis-ci.org/becivells/iconhash) [![master build status](https://img.shields.io/travis/becivells/iconhash/master.svg?label=travis master build)](https://travis-ci.org/becivells/iconhash) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/becivells/iconhash)  ![GitHub All Releases](https://img.shields.io/github/downloads/becivells/iconhash/total) ![GitHub issues](https://img.shields.io/github/issues/becivells/iconhash)
+[![Latest release](https://img.shields.io/github/v/release/becivells/iconhash)](https://github.com/becivells/iconhash/releases/latest) [![dev build status](https://img.shields.io/travis/becivells/iconhash/dev.svg?label=travis%20dev%20build)](https://travis-ci.org/becivells/iconhash) [![master build status](https://img.shields.io/travis/becivells/iconhash/master.svg?label=travis%20master%20build)](https://travis-ci.org/becivells/iconhash) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/becivells/iconhash)  ![GitHub All Releases](https://img.shields.io/github/downloads/becivells/iconhash/total) ![GitHub issues](https://img.shields.io/github/issues/becivells/iconhash)
 
 ## 说明
 
