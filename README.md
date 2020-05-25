@@ -1,8 +1,10 @@
 # Fofa Shodan icon hash 计算器
 
+[![Latest release](https://img.shields.io/github/v/release/becivells/iconhash)](https://github.com/becivells/iconhash/releases/latest) [![dev build status](https://img.shields.io/travis/becivells/iconhash/dev.svg?label=travis%20dev%20build)](https://travis-ci.org/becivells/iconhash) [![master build status](https://img.shields.io/travis/becivells/iconhash/master.svg?label=travis%20master%20build)](https://travis-ci.org/becivells/iconhash) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/becivells/iconhash)  ![GitHub All Releases](https://img.shields.io/github/downloads/becivells/iconhash/total) ![GitHub issues](https://img.shields.io/github/issues/becivells/iconhash)
+
 ## 说明
 
-大致说一下思路首先获得 favicon.ico 文件然后进行 base64 编码，编码后的数据要求每76个字符加上换行符。具体原因RFC 822文档上有说明。然后32位 mmh3 hash
+大致说一下思路首先获得 favicon.ico 文件然后进行 base64 编码，编码后的数据要求每 76 个字符加上换行符。具体原因 RFC 822 文档上有说明。然后 32 位 mmh3 hash
 
 这里贴出来python的实现
 
@@ -100,7 +102,7 @@ iconhash -url https://www.baidu.com/favicon.ico
 
 
 
-#### 3. base64的 icon hash 值
+#### 3. base64 的 icon hash 值
 
 格式如下所示
 
@@ -158,7 +160,7 @@ Usage of ./iconhash:
 
 ### 调试模式
 
-主要应对 url 和 image b64的情况，如果hash值不一致请开启debug模式
+主要应对 url 和 image base64 的情况，如果 hash 值不一致请开启 debug 模式
 
 ```
 iconhash -url https://106.55.12.93/favicon.ico1  -debug
@@ -167,14 +169,14 @@ iconhash -url https://106.55.12.93/favicon.ico1  -debug
 **结果：**
 
 ```
-------------------var            value-----------------------
+---------------------------     var    value     --------------------------------
 h                  :false
 v                  :false
-Version            :2020-05-24 23:09:10 +0800 v0.2
-VERSION_TAG        :v0.2
-Compile            :2020-05-24 23:24:31 +0800
-Branch             :master
-GitDirty           :0
+Version            :2020-05-25 12:02:03 +0800 v0.2-11-gfcbf179
+VERSION_TAG        :v0.2-11-gfcbf179
+Compile            :2020-05-25 21:51:38 +0800
+Branch             :dev
+GitDirty           :73
 HashUrl            :https://106.55.12.93/favicon.ico1
 Hashfile           :
 ImageBase64        :
@@ -185,8 +187,8 @@ ShodanFormat       :false
 InsecureSkipVerify :true
 Debug              :true
 DefaultUA          :Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11
-------------------var            value-----------------------
-------------------start url content-----------------------
+---------------------------     var    value     --------------------------------
+---------------------------  start url  content  --------------------------------
 ====> url: https://106.55.12.93/favicon.ico1
 ===> status code: 404
 ====> content: 
@@ -204,10 +206,10 @@ DefaultUA          :Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/5
 <!-- a padding to disable MSIE and Chrome friendly error page -->
 <!-- a padding to disable MSIE and Chrome friendly error page -->
 
-------------------end url content-----------------------
-------------------start base64 content-----------------------
+---------------------------  end url  content  --------------------------------
+---------------------------start base64 content--------------------------------
 ====> base64:
- PGh0bWw+DQo8aGVhZD48dGl0bGU+NDA0IE5vdCBGb3VuZDwvdGl0bGU+PC9oZWFkPg0KPGJvZHk+
+PGh0bWw+DQo8aGVhZD48dGl0bGU+NDA0IE5vdCBGb3VuZDwvdGl0bGU+PC9oZWFkPg0KPGJvZHk+
 DQo8Y2VudGVyPjxoMT40MDQgTm90IEZvdW5kPC9oMT48L2NlbnRlcj4NCjxocj48Y2VudGVyPm5n
 aW54PC9jZW50ZXI+DQo8L2JvZHk+DQo8L2h0bWw+DQo8IS0tIGEgcGFkZGluZyB0byBkaXNhYmxl
 IE1TSUUgYW5kIENocm9tZSBmcmllbmRseSBlcnJvciBwYWdlIC0tPg0KPCEtLSBhIHBhZGRpbmcg
@@ -218,7 +220,7 @@ cnJvciBwYWdlIC0tPg0KPCEtLSBhIHBhZGRpbmcgdG8gZGlzYWJsZSBNU0lFIGFuZCBDaHJvbWUg
 ZnJpZW5kbHkgZXJyb3IgcGFnZSAtLT4NCjwhLS0gYSBwYWRkaW5nIHRvIGRpc2FibGUgTVNJRSBh
 bmQgQ2hyb21lIGZyaWVuZGx5IGVycm9yIHBhZ2UgLS0+DQo=
 
-------------------end base64 content-----------------------
+---------------------------end base64 content--------------------------------
 icon_hash="566218143"
 ```
 
@@ -226,9 +228,25 @@ icon_hash="566218143"
 
 ## 编译 or 开发
 
-安装make环境，golang 环境
+安装 make 环境，golang 环境，测试环境 [bats](https://github.com/bats-core/bats-core)
+
+
+
+本地测试
+
+```
+make
+```
+
+生成 release 版本
 
 ```
 make release #编译版本
+```
+
+bat 测试功能
+
+```
+make test-cli
 ```
 

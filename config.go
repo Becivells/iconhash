@@ -106,7 +106,7 @@ func init() {
 	}
 
 	if Debug {
-		fmt.Print("------------------   var        value   -----------------------\n")
+		fmt.Print("---------------------------     var    value     --------------------------------\n")
 		fmt.Printf("h                  :%t\n", h)
 		fmt.Printf("v                  :%t\n", v)
 		fmt.Printf("Version            :%s\n", Version)
@@ -124,7 +124,9 @@ func init() {
 		fmt.Printf("InsecureSkipVerify :%t\n", InsecureSkipVerify)
 		fmt.Printf("Debug              :%t\n", Debug)
 		fmt.Printf("DefaultUA          :%s\n", DefaultUA)
-		defer func() { fmt.Print("------------------   var        value   -----------------------\n") }()
+		defer func() {
+			fmt.Print("---------------------------     var    value     --------------------------------\n")
+		}()
 	}
 
 }
@@ -144,9 +146,9 @@ func PrintResult(result string) {
 
 func FromUrlGetContent(requrl string) (content []byte, err error) {
 	if Debug {
-		fmt.Print("------------------  start url  content  -----------------------\n")
+		fmt.Print("---------------------------  start url  content  --------------------------------\n")
 		fmt.Printf("====> url: %s\n", HashUrl)
-		defer func() { fmt.Print("------------------  end url  content  -----------------------\n") }()
+		defer func() { fmt.Print("---------------------------  end url  content  --------------------------------\n") }()
 	}
 
 	client := &http.Client{
@@ -183,8 +185,10 @@ func FromUrlGetContent(requrl string) (content []byte, err error) {
 func FromfileGetContent(path string) (content []byte, err error) {
 
 	if Debug {
-		fmt.Print("------------------start From file get content-----------------------\n")
-		defer func() { fmt.Print("------------------end  From file get content-----------------------\n") }()
+		fmt.Print("---------------------------start From file get content--------------------------------\n")
+		defer func() {
+			fmt.Print("---------------------------end  From file get content--------------------------------\n")
+		}()
 	}
 
 	fi, err := os.Open(path)
@@ -224,9 +228,9 @@ func StandBase64(braw []byte) []byte {
 	}
 	buffer.WriteByte('\n')
 	if Debug {
-		fmt.Print("------------------start base64 content-----------------------\n")
+		fmt.Print("---------------------------start base64 content--------------------------------\n")
 		fmt.Printf("====> base64:\n%s\n", buffer.String())
-		defer func() { fmt.Print("------------------end base64 content-----------------------\n") }()
+		defer func() { fmt.Print("---------------------------end base64 content--------------------------------\n") }()
 	}
 	return buffer.Bytes()
 
@@ -249,9 +253,9 @@ func SplitChar76(braw []byte) []byte {
 	buffer.WriteByte('\n')
 
 	if Debug {
-		fmt.Print("------------------start base64 content-----------------------\n")
+		fmt.Print("---------------------------start base64 content--------------------------------\n")
 		fmt.Printf("====> base64 split 76:\n %s\n", buffer.String())
-		defer func() { fmt.Print("------------------end base64 content-----------------------\n") }()
+		defer func() { fmt.Print("---------------------------end base64 content--------------------------------\n") }()
 	}
 
 	return buffer.Bytes()
