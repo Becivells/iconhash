@@ -71,8 +71,8 @@ build: fmt
 release: build
 	@echo "$(CGREEN)Cross platform building for release ...$(CEND)"
 	@mkdir -p release
-	@for GOOS in darwin linux windows; do \
-		for GOARCH in amd64; do \
+	@for GOOS in darwin linux windows android freebsd netbsd openbsd plan9 solaris aix; do \
+		for GOARCH in amd64 386 arm; do \
 			for d in $$(go list -f '{{if (eq .Name "main")}}{{.ImportPath}}{{end}}' ./...); do \
 				b=$$(basename $${d}) ; \
 				if [ "$${GOOS}" = 'windows' ]; then\
@@ -101,3 +101,6 @@ clean:
 	@echo "$(CGREEN)clean all ...$(CEND)"
 	@find ./ -type f -a -name iconhash -exec rm {} \;
 	@find ./ -name .DS_Store -a -type f -exec rm -f {} \;
+	@find ./release/  -type f -exec rm -f {} \;
+	@find ./tmp/   -type f -exec rm -f {} \;
+	@find ./bin/   -type f -exec rm -f {} \;
