@@ -71,7 +71,7 @@ build: fmt
 release: build
 	@echo "$(CGREEN)Cross platform building for release ...$(CEND)"
 	@mkdir -p release
-	@for GOOS in darwin linux windows android freebsd netbsd openbsd plan9 solaris aix; do \
+	@for GOOS in darwin linux windows freebsd netbsd openbsd plan9 solaris; do \
 		for GOARCH in amd64 386 arm; do \
 			for d in $$(go list -f '{{if (eq .Name "main")}}{{.ImportPath}}{{end}}' ./...); do \
 				b=$$(basename $${d}) ; \
@@ -89,6 +89,7 @@ release: build
 			done ; \
 		done ;\
 	done
+	@find ./release/ -type f -a -size 0 -exec rm {} \;
 
 .PHONY: test-cli
 test-cli: build
