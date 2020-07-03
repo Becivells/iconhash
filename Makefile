@@ -95,3 +95,9 @@ test-cli: build
 	@echo "$(CGREEN)Run all cli test cases ...$(CEND)"
 	bats ./test
 	@echo "test-cli Success!"
+
+.PHONY: clean
+clean:
+	@echo "$(CGREEN)clean all ...$(CEND)"
+	@find ./ -type f -a -name iconhash -exec rm {} \;
+	@find ./ -name .DS_Store -a -type f -exec rm -f {} \;
