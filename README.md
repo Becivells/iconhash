@@ -2,6 +2,8 @@
 
 [![Latest release](https://img.shields.io/github/v/release/becivells/iconhash)](https://github.com/becivells/iconhash/releases/latest) [![dev build status](https://img.shields.io/travis/becivells/iconhash/dev.svg?label=travis%20dev%20build)](https://travis-ci.org/becivells/iconhash) [![master build status](https://img.shields.io/travis/becivells/iconhash/master.svg?label=travis%20master%20build)](https://travis-ci.org/becivells/iconhash) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/becivells/iconhash)  ![GitHub All Releases](https://img.shields.io/github/downloads/becivells/iconhash/total) ![GitHub issues](https://img.shields.io/github/issues/becivells/iconhash)
 
+
+
 ## 说明
 
 大致说一下思路首先获得 favicon.ico 文件然后进行 base64 编码，编码后的数据要求每 76 个字符加上换行符。具体原因 RFC 822 文档上有说明。然后 32 位 mmh3 hash
@@ -20,11 +22,25 @@ Python3
 alias ico_hash=" python3 -c \"import requests,sys,mmh3,codecs;print('icon_hash=%s'%mmh3.hash(codecs.lookup('base64').encode(requests.get(sys.argv[1]).content)[0]))\""
 ```
 
+
+
+## 安装下载
+
+[跳转到下载链接](https://github.com/becivells/iconhash/releases/latest)
+
+下载后记得校验文件
+
+```
+sha1sum -c *.shasum
+```
+
+
+
 ## iconhash 用法
 
 ### 不带参数
 
-#### 1. 不带参数的链接
+#### 1. 不带参数的 URL
 
 ```shell
 iconhash https://www.baidu.com/favicon.ico
@@ -36,7 +52,7 @@ iconhash https://www.baidu.com/favicon.ico
 -1507567067
 ```
 
-#### 2. 不带参数的文件
+#### 2. 不带参数的 File
 
 ```shell
 iconhash favicon.ico
@@ -48,9 +64,7 @@ iconhash favicon.ico
 -1507567067
 ```
 
-**需要注意不带参数所有的参数使用都无效**
-
-
+**需要注意不指明文件类型 iconhash 所有的参数都不能使用**
 
 ### 带参数
 
@@ -92,15 +106,11 @@ iconhash -file favicon.ico -fofa=false -shodan
 http.favicon.hash:-1507567067
 ```
 
-
-
 #### 2. 链接中的 icon hash 值
 
 ```
 iconhash -url https://www.baidu.com/favicon.ico
 ```
-
-
 
 #### 3. base64 的 icon hash 值
 
@@ -112,7 +122,7 @@ data:image/vnd.microsoft.icon;base64,AAABAAEAQEAAAAEAIAAoQgAAFgAAACgAAABAAAAAgAA
 //////////////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
 ```
 
-
+**执行命令**
 
 ```
 iconhash -b64 imgb64.txt
@@ -128,7 +138,9 @@ iconhash -b64 imgb64.txt
 
 #### uint32数据
 
-默认使用的是int32数据如果想获得 uint32 的值可以加参数 -uint32
+默认使用的是 int32 数据如果想获得 uint32 的值可以加参数 -uint32
+
+
 
 ## 帮助
 
@@ -158,9 +170,11 @@ Usage of ./iconhash:
   -v    version
 ```
 
+
+
 ### 调试模式
 
-主要应对 url 和 image base64 的情况，如果 hash 值不一致请开启 debug 模式
+主要应对 url 和 image base64 的情况，如果 hash 值不一致请开启 debug 模式看错误信息
 
 ```
 iconhash -url https://106.55.12.93/favicon.ico1  -debug
@@ -230,9 +244,7 @@ icon_hash="566218143"
 
 安装 make 环境，golang 环境，测试环境 [bats](https://github.com/bats-core/bats-core)
 
-
-
-本地测试
+本地编译
 
 ```
 make
