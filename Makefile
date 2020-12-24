@@ -11,7 +11,7 @@ ifeq "$(GOPATH)" ""
   $(error Please set the environment variable GOPATH before running `make`)
 endif
 PATH := ${GOPATH}/bin:$(PATH)
-GCFLAGS=-gcflags "all=-trimpath=${GOPATH}"
+GCFLAGS=-gcflags "all=-trimpath=${GOPATH}" -asmflags="all=-trimpath=${GOPATH}"
 
 VERSION_TAG := $(shell git describe --tags --always)
 VERSION_VERSION := $(shell git log --date=iso --pretty=format:"%cd" -1) $(VERSION_TAG)
