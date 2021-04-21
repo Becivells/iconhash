@@ -1,44 +1,24 @@
 # This is an example goreleaser.yaml file with some sane defaults.
 # Make sure to check the documentation at http://goreleaser.com
 # https://goreleaser.com/customization/build/
-before:
-  hooks:
-    # you may remove this if you don't use vgo
-    - go mod download
-    # you may remove this if you don't need go generate
-    - go generate ./...
+project_name: iconhash
 builds:
-  - env:
-      - CGO_ENABLED=0
+  - env: [CGO_ENABLED=0]
     asmflags:
       - all=-trimpath={{.Env.GOPATH}}
     ldflags:
       - -s -w -X main.build={{.Version}}
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - amd64
+      - 386
+      - arm64
     ignore:
       - goos: darwin
         goarch: 386
-    goos:
-      - linux
-      - darwin
-      - windows
-      - netbsd
-      - openbsd
-      - plan9
-      - solaris
-      - freebsd
-    gobinary: "go1.13.4"
-archives:
-  - replacements:
-      darwin: Darwin
-      linux: Linux
-      windows: Windows
-      netbsd: NetBSD
-      openbsd: OpenBSD
-      plan9: Plan9
-      solaris: Solaris
-      freebsd: FreeBSD
-      386: i386
-      amd64: x86_64
 checksum:
   name_template: 'checksums.txt'
 snapshot:
@@ -49,3 +29,23 @@ changelog:
     exclude:
       - '^docs:'
       - '^test:'
+dockers:
+  - image_templates: ["github.com/becivells/iconhash:{{ .Version }}"]
+    dockerfile: Dockerfile
+    build_flag_templates:
+      - --label=org.opencontainers.image.title={{ .ProjectName }}
+      - --label=org.opencontainers.image.description={{ .ProjectName }}
+      - --label=org.opencontainers.image.url=https://github.com/becivells/iconhash
+      - --label=org.opencontainers.image.source=https://github.com/becivells/iconhash
+      - --label=org.opencontainers.image.version={{ .Version }}
+      - --label=org.opencontainers.image.created={{ time "2006-01-02T15:04:05Z07:00" }}
+      - --label=org.opencontainers.image.revision={{ .FullCommit }}
+      - --label=org.opencontainers.image.licenses=MIT
+nfpms:
+  - maintainer: becivells <becivells@qq.com>
+    description: fofa shodan iconhash
+    homepage: https://github.com/becivells/iconhash
+    license: MIT
+    formats:
+      - deb
+      - rpm
