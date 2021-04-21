@@ -18,11 +18,9 @@ import (
 var (
 	h                  bool
 	v                  bool
-	Version            string
-	VERSION_TAG        string
-	Compile            string
-	Branch             string
-	GitDirty           string
+	version            string
+	commit             string
+	date               string
 	HashUrl            string
 	Hashfile           string
 	ImageBase64        string
@@ -36,11 +34,10 @@ var (
 )
 
 func PrintVersion() {
-	fmt.Printf("Tag: %s\n", VERSION_TAG)
-	fmt.Printf("Version: %s\n", Version)
-	fmt.Printf("Compile: %s\n", Compile)
-	fmt.Printf("Branch: %s\n", Branch)
-	fmt.Printf("GitDirty: %s\n", GitDirty)
+
+	fmt.Printf("Version: %s\n", version)
+	fmt.Printf("Compile: %s\n", date)
+	fmt.Printf("Commit: %s\n", commit)
 }
 
 func init() {
@@ -109,11 +106,9 @@ func init() {
 		fmt.Print("---------------------------     var    value     --------------------------------\n")
 		fmt.Printf("h                  :%t\n", h)
 		fmt.Printf("v                  :%t\n", v)
-		fmt.Printf("Version            :%s\n", Version)
-		fmt.Printf("VERSION_TAG        :%s\n", VERSION_TAG)
-		fmt.Printf("Compile            :%s\n", Compile)
-		fmt.Printf("Branch             :%s\n", Branch)
-		fmt.Printf("GitDirty           :%s\n", GitDirty)
+		fmt.Printf("Version            :%s\n", version)
+		fmt.Printf("Commit        :%s\n", commit)
+		fmt.Printf("Compile            :%s\n", date)
 		fmt.Printf("HashUrl            :%s\n", HashUrl)
 		fmt.Printf("Hashfile           :%s\n", Hashfile)
 		fmt.Printf("ImageBase64        :%s\n", ImageBase64)

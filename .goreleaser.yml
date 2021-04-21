@@ -30,7 +30,7 @@ changelog:
       - '^docs:'
       - '^test:'
 dockers:
-  - image_templates: ["github.com/becivells/iconhash:{{ .Version }}"]
+  - image_templates: ["becivells/iconhash:{{ .Version }}"]
     dockerfile: Dockerfile
     build_flag_templates:
       - --label=org.opencontainers.image.title={{ .ProjectName }}
