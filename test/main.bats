@@ -6,11 +6,11 @@ load test_helper
 @test "Test iconhash version" {
   run ${ICONHASH_BIN} -v
   [ "$status" -eq 0 ]
-  [ "${lines[0]%% *}" == "Tag:" ]
-  [ "${lines[1]%% *}" == "Version:" ]
-  [ "${lines[2]%% *}" == "Compile:" ]
+  [ "${lines[0]%% *}" == "Version:" ]
+  [ "${lines[1]%% *}" == "Compile:" ]
+   [ "${lines[2]%% *}" == "Commit:" ]
   [ "${lines[3]%% *}" == "Branch:" ]
-  [ $(expr "${lines[2]}" : "Compile: $(date +'%Y-%m-%d').*") -ne 0 ]   # 检查当前版本是否为今日编译的
+#  [ $(expr "${lines[2]}" : "Compile: $(date +'%Y-%m-%d').*") -ne 0 ]   # 检查当前版本是否为今日编译的
 }
 
 

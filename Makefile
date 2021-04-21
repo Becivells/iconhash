@@ -105,3 +105,4 @@ clean:
 	@find ./release/  -type f -exec rm -f {} \;
 	@find ./tmp/   -type f -exec rm -f {} \;
 	@find ./bin/   -type f -exec rm -f {} \;
+	@find ./dist/   -type f -exec rm -f {} \;
