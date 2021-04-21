@@ -1,4 +1,4 @@
-module github.com/Becivells/iconhash
+module github.com/becivells/iconhash
 
 go 1.14
 
