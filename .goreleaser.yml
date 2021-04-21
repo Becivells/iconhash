@@ -2,6 +2,8 @@
 # Make sure to check the documentation at http://goreleaser.com
 # https://goreleaser.com/customization/build/
 project_name: iconhash
+gomod:
+  proxy: true
 builds:
   - env: [CGO_ENABLED=0]
     asmflags:
