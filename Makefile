@@ -68,28 +68,8 @@ build: fmt
 	@echo "build Success!"
 
 .PHONY: release
-release: build
-	@echo "$(CGREEN)Cross platform building for release ...$(CEND)"
-	@mkdir -p release
-	@for GOOS in darwin linux windows freebsd netbsd openbsd plan9 solaris; do \
-		for GOARCH in amd64 386 arm; do \
-			for d in $$(go list -f '{{if (eq .Name "main")}}{{.ImportPath}}{{end}}' ./...); do \
-				b=$$(basename $${d}) ; \
-				if [ "$${GOOS}" = 'windows' ]; then\
-				echo "Building $${b}.$${GOOS}-$${GOARCH}.exe ..."; \
-				GOOS=$${GOOS} GOARCH=$${GOARCH} go build ${GCFLAGS} ${LDFLAGS} -v -o release/$${b}.$${GOOS}-$${GOARCH}.exe $$d 2>/dev/null ; \
-				cd release &&shasum $${b}.$${GOOS}-$${GOARCH}.exe>$${b}.$${GOOS}-$${GOARCH}.exe.shasum && tar -zcf $${b}.$${GOOS}-$${GOARCH}.tar.gz $${b}.$${GOOS}-$${GOARCH}.exe $${b}.$${GOOS}-$${GOARCH}.exe.shasum;\
-				cd ../; \
-				else \
-				echo "Building $${b}.$${GOOS}-$${GOARCH} ..."; \
-				GOOS=$${GOOS} GOARCH=$${GOARCH} go build ${GCFLAGS} ${LDFLAGS} -v -o release/$${b}.$${GOOS}-$${GOARCH} $$d 2>/dev/null ; \
-				cd release &&shasum $${b}.$${GOOS}-$${GOARCH}>$${b}.$${GOOS}-$${GOARCH}.shasum && tar -zcf $${b}.$${GOOS}-$${GOARCH}.tar.gz $${b}.$${GOOS}-$${GOARCH} $${b}.$${GOOS}-$${GOARCH}.shasum; \
-				cd ../; \
-				fi \
-			done ; \
-		done ;\
-	done
-	@find ./release/ -type f -a -size 0 -exec rm {} \;
+release:
+	goreleaser release --snapshot --rm-dist
 
 .PHONY: test-cli
 test-cli: build
