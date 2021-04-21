@@ -19,7 +19,7 @@ VERSION_COMPILE := $(shell date +"%F %T %z")
 VERSION_BRANCH  := $(shell git rev-parse --abbrev-ref HEAD)
 VERSION_GIT_DIRTY := $(shell git diff --no-ext-diff 2>/dev/null | wc -l|sed 's/^[ \t]*//g')
 VERSION_DEV_PATH:= $(shell pwd)
-LDFLAGS=-ldflags=" -s -w -X 'main.VERSION_TAG=$(VERSION_TAG)' -X 'main.Version=$(VERSION_VERSION)' -X 'main.Compile=$(VERSION_COMPILE)' -X 'main.Branch=$(VERSION_BRANCH)' -X 'main.GitDirty=$(VERSION_GIT_DIRTY)'"
+LDFLAGS=-ldflags=" -s -w -X 'main.VERSION_TAG=$(VERSION_TAG)' -X 'main.version=$(VERSION_VERSION)' -X 'main.date=$(VERSION_COMPILE)' -X 'main.Branch=$(VERSION_BRANCH)' -X 'main.GitDirty=$(VERSION_GIT_DIRTY)'"
 
 # These are the values we want to pass for VERSION  and BUILD
 BUILD_TIME=`date +%Y%m%d%H%M`
@@ -68,8 +68,28 @@ build: fmt
 	@echo "build Success!"
 
 .PHONY: release
-release:
-	goreleaser release --snapshot --rm-dist
+release: build
+	@echo "$(CGREEN)Cross platform building for release ...$(CEND)"
+	@mkdir -p release
+	@for GOOS in darwin linux windows freebsd netbsd openbsd plan9 solaris; do \
+		for GOARCH in amd64 386 arm; do \
+			for d in $$(go list -f '{{if (eq .Name "main")}}{{.ImportPath}}{{end}}' ./...); do \
+				b=$$(basename $${d}) ; \
+				if [ "$${GOOS}" = 'windows' ]; then\
+				echo "Building $${b}.$${GOOS}-$${GOARCH}.exe ..."; \
+				GOOS=$${GOOS} GOARCH=$${GOARCH} go build ${GCFLAGS} ${LDFLAGS} -v -o release/$${b}.$${GOOS}-$${GOARCH}.exe $$d 2>/dev/null ; \
+				cd release &&shasum $${b}.$${GOOS}-$${GOARCH}.exe>$${b}.$${GOOS}-$${GOARCH}.exe.shasum && tar -zcf $${b}.$${GOOS}-$${GOARCH}.tar.gz $${b}.$${GOOS}-$${GOARCH}.exe $${b}.$${GOOS}-$${GOARCH}.exe.shasum;\
+				cd ../; \
+				else \
+				echo "Building $${b}.$${GOOS}-$${GOARCH} ..."; \
+				GOOS=$${GOOS} GOARCH=$${GOARCH} go build ${GCFLAGS} ${LDFLAGS} -v -o release/$${b}.$${GOOS}-$${GOARCH} $$d 2>/dev/null ; \
+				cd release &&shasum $${b}.$${GOOS}-$${GOARCH}>$${b}.$${GOOS}-$${GOARCH}.shasum && tar -zcf $${b}.$${GOOS}-$${GOARCH}.tar.gz $${b}.$${GOOS}-$${GOARCH} $${b}.$${GOOS}-$${GOARCH}.shasum; \
+				cd ../; \
+				fi \
+			done ; \
+		done ;\
+	done
+	@find ./release/ -type f -a -size 0 -exec rm {} \;
 
 .PHONY: test-cli
 test-cli: build

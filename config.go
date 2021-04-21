@@ -21,6 +21,8 @@ var (
 	version            string
 	commit             string
 	date               string
+	Branch             string
+	GitDirty           string
 	HashUrl            string
 	Hashfile           string
 	ImageBase64        string
@@ -38,6 +40,8 @@ func PrintVersion() {
 	fmt.Printf("Version: %s\n", version)
 	fmt.Printf("Compile: %s\n", date)
 	fmt.Printf("Commit: %s\n", commit)
+	fmt.Printf("Branch: %s\n", Branch)
+	fmt.Printf("GitDirty: %s\n", GitDirty)
 }
 
 func init() {
