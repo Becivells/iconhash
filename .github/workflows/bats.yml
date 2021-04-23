@@ -24,13 +24,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-go-
       -
-        name: install bats
-        shell: bash
-        working-directory: ${{github.workspace}}
-        run: |
-          sudo add-apt-repository ppa:duggan/bats --yes
-          sudo apt-get update -qq
-          sudo apt-get install -qq bats
+        name: Setup BATS
+        uses: mig4/setup-bats@v1
+        with:
+          bats-version: 1.2.1
       - name: test bats
         shell: bash
         working-directory: ${{github.workspace}}
