@@ -8,7 +8,7 @@
 
 大致说一下思路首先获得 favicon.ico 文件然后进行 base64 编码，编码后的数据要求每 76 个字符加上换行符。具体原因 RFC 822 文档上有说明。然后 32 位 mmh3 hash
 
-这里贴出来python的实现
+这里贴出来 python 的实现
 
 Python2
 
