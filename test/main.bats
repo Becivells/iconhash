@@ -102,15 +102,8 @@ load test_helper
   [ $status -eq 0 ]
 }
 
-# 13. 检查执行 iconhash args file no fofa 是否正常
-@test "Check iconhash args file no fofa" {
-  ${ICONHASH_BIN} -file ${TEST_DATA}/favicon.ico  -fofa=false > ${BATS_TMP_DIRNAME}/${BATS_TEST_NAME}.golden
-  run golden_diff
-  echo "${output}"
-  [ $status -eq 0 ]
-}
 
-# 13. 检查执行 iconhash args other file 是否正常
+# 14. 检查执行 iconhash args other file 是否正常
 @test "Check iconhash args other file" {
   ${ICONHASH_BIN} -file ${TEST_DATA}/dede.ico  -fofa=false > ${BATS_TMP_DIRNAME}/${BATS_TEST_NAME}.golden
   run golden_diff
@@ -118,7 +111,7 @@ load test_helper
   [ $status -eq 0 ]
 }
 
-# 14. 检查执行 iconhash url 是否正常
+# 15. 检查执行 iconhash url 是否正常
 @test "Check iconhash other url" {
 
   ${ICONHASH_BIN} https://raw.githubusercontent.com/Becivells/iconhash/master/test/data/favicon.ico > ${BATS_TMP_DIRNAME}/${BATS_TEST_NAME}.golden
@@ -128,7 +121,7 @@ load test_helper
   [ $status -eq 0 ]
 }
 
-# 13. 检查执行 iconhash args other file uint32 是否正常
+# 16. 检查执行 iconhash args other file uint32 是否正常
 @test "Check iconhash args other file uint32" {
   ${ICONHASH_BIN} -file ${TEST_DATA}/dede.ico  -fofa=false -uint32 > ${BATS_TMP_DIRNAME}/${BATS_TEST_NAME}.golden
   run golden_diff
