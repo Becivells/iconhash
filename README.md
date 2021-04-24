@@ -1,8 +1,9 @@
 # Fofa Shodan icon hash 计算器
 
 [![Latest release](https://img.shields.io/github/v/release/becivells/iconhash)](https://github.com/becivells/iconhash/releases/latest)
-[![dev build status](https://img.shields.io/travis/becivells/iconhash/dev.svg?label=travis%20dev%20build)](https://travis-ci.org/becivells/iconhash)
-[![master build status](https://img.shields.io/travis/becivells/iconhash/master.svg?label=travis%20master%20build)](https://travis-ci.org/becivells/iconhash)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/becivells/iconhash/bats%20test?label=bats%20CI)](https://github.com/Becivells/iconhash/actions/workflows/bats.yml)
+[![dev build status](https://img.shields.io/travis/becivells/iconhash/dev.svg?label=travis%20dev)](https://travis-ci.org/becivells/iconhash)
+[![master build status](https://img.shields.io/travis/becivells/iconhash/master.svg?label=travis%20master)](https://travis-ci.org/becivells/iconhash)
 ![GitHub All Releases](https://img.shields.io/github/downloads/becivells/iconhash/total)
 [![Docker Pulls](https://img.shields.io/docker/pulls/becivells/iconhash)](https://hub.docker.com/r/becivells/iconhash)
 ![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/becivells/iconhash)
