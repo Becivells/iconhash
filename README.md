@@ -196,7 +196,7 @@ VERSION_TAG        :v0.2-11-gfcbf179
 Compile            :2020-05-25 21:51:38 +0800
 Branch             :dev
 GitDirty           :73
-HashUrl            :https://106.55.12.93/favicon.ico1
+HashURL            :https://106.55.12.93/favicon.ico1
 Hashfile           :
 ImageBase64        :
 UserAgent          :Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11

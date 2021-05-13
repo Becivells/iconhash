@@ -5,6 +5,7 @@ import (
 	"os"
 )
 
+// PrintErr 打印错误并输出标准错误
 func PrintErr(err error) {
 	if Debug {
 		panic(err)
@@ -12,10 +13,10 @@ func PrintErr(err error) {
 	fmt.Printf("%s\n", err)
 	os.Exit(1)
 }
-func main() {
 
-	if len(HashUrl) != 0 {
-		content, err := FromUrlGetContent(HashUrl)
+func main() {
+	if HashURL != "" {
+		content, err := FromURLGetContent(HashURL)
 
 		if err != nil {
 			PrintErr(err)
@@ -25,7 +26,7 @@ func main() {
 		os.Exit(0)
 	}
 
-	if len(Hashfile) != 0 {
+	if Hashfile != "" {
 		content, err := FromfileGetContent(Hashfile)
 
 		if err != nil {
@@ -36,7 +37,7 @@ func main() {
 		os.Exit(0)
 	}
 
-	if len(ImageBase64) != 0 {
+	if ImageBase64 != "" {
 		content, err := FromfileGetContent(ImageBase64)
 
 		if err != nil {

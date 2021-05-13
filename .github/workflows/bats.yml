@@ -2,6 +2,16 @@ name: bats test
 
 on: [push, pull_request]
 jobs:
+  golangci-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run golangci-lint
+        uses: golangci/golangci-lint-action@v2.5.2
+        with:
+          version: v1.40
+          args: --timeout 5m
   build:
     runs-on: ubuntu-latest
     steps:
